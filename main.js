@@ -1,7 +1,7 @@
 //Importación de módulos
 const express = require("express");
 const app = express();
-const conexion = require("./configuracion/conexion.js");
+//const conexion = require("./configuracion/sequelize-conexion");
 const pelRouter = require("./peliculas/pelRutas.js");
 const usRouter = require("./usuarios/usRutas.js");
 const dotenvDavid = require("dotenv");
@@ -10,7 +10,7 @@ const dotenvDavid = require("dotenv");
 dotenvDavid.config();
 
 //conexion con la base de datos
-conexion();
+//conexion();
 
 //Función para que nuestra applicación pueda recibir documentos en formato json
 app.use(express.json());

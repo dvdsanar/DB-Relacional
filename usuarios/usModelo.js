@@ -1,11 +1,29 @@
-const mongoose = require("mongoose");
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = new Sequelize("sqlite::memory:");
 
-//Modelo para generar los usuarios de nuestra API, claves y tipo de valor que han de llevar
-const Schema = new mongoose.Schema({
-  nombre: String,
-  email: String,
-  password: String,
-  rol: String,
-});
-const Model = mongoose.model("Usuarios", Schema);
-module.exports = Model;
+const Usuario = sequelize.define(
+  "Usuarios",
+  {
+    // Model attributes are defined here
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      // allowNull defaults to true
+    },
+  },
+  {
+    contraseña: DataTypes.STRING,
+    allowNull: false,
+    // Other model options go here
+  },
+  {
+    rol: DataTypes.STRING,
+  }
+);
+
+// `sequelize.define` also returns the model
+console.log(Usuario === sequelize.models.Usuario); // true
