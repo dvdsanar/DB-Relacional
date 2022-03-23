@@ -10,7 +10,7 @@ module.exports.traerUsuarios = async (req, res) => {
       });
       res.json(listaFiltrada);
     } else {
-      const lista = await Usuarios.find({});
+      const lista = await Usuarios.findAll({});
       res.json(lista);
     }
   } catch (error) {
@@ -37,7 +37,7 @@ module.exports.nuevoUsuario = async (req, res) => {
       rol: "cliente",
     };
     const usuario = new Usuarios(usuarioCreado);
-    await usuario.save();
+    await usuario.create();
     res.json(usuario);
   } catch (error) {
     res.json(error);
